@@ -10,6 +10,7 @@ import pickle
 ganz = 1
 sitzung = 1
 links = []
+speicher = []
 sort = []
 print("sort anfang:",sort)
 path = pathlib.Path('links.txt')
@@ -68,14 +69,16 @@ def drop(event):
     global links
     ganz = len(links)
     sitzN = Label(root, text=sitzung).place(x=573,y=30)
-    GesN = Label(root, text=ganz).place(x=573,y=10)
+    GesN = Label(root, text=(str(ganz+1))).place(x=573,y=10)
     labelL = Label(root, textvar=(event.data), relief="solid",height=25,width=70)
     sitzung += 1
     ganz += 1
+    speicher.append(event.data)
     links.append(event.data)
     with open('links.txt','wb') as fp:
         pickle.dump(links,fp)
-    return sitzung, ganz+1, links
+    return sitzung, ganz, links
+
 
 nummer = StringVar(value=0)
 Nummer = Spinbox(root, from_=0,to=10,width=11,textvar=nummer).place(x=513,y=140)
@@ -106,12 +109,17 @@ def anzeigen():
     i = 0
     newWindow = Toplevel(root)
     newWindow.title("Sitzungseinträge")
-    newWindow.geometry("400x200")
-    Label(newWindow,text=links,justify="left").pack()
+#    newWindow.geometry("400x200")
+    Label(newWindow,text=("\n".join(speicher)),justify="left").pack()
+#    Label.config(newWindow,)
 
 def lloeschen():
     linkp.unlink
     liste = open('links.txt','w')
+    links.clear()
+    with open('links.txt','wb') as fb:
+        pickle.dump(links,fb)
+
 
 Links = Label(root, text="Speicher:").place(x=513,y=10)
 Sitzung = Label(root, text="Sitzung:").place(x=513,y=30)
