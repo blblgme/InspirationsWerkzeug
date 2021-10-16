@@ -1,7 +1,7 @@
 # InspirationsWerkzeug
 A basic tool to help you get some inspiration from the websites you chose
 
-InspirationsWerkzeug(short form coming soon) isn't even an app that lets you drag links from your browser into a field to be saved in a file.
+InspirationsWerkzeug(short form coming soon) is an app that lets you drag links from your browser into a field to be saved in a file.
 
 You can drag as many links in there as you'd like, I haven't really tested how stable it is though.. I haven't really tested anything to be honest,
 it's still a little early for that. For now I just know that the basic functions work, which brings me to the next point
